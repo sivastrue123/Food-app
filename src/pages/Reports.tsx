@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Layout } from '@/components/Layout'
+import { PageHeader } from '@/components/PageHeader'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { supabase } from '@/lib/supabase'
@@ -79,17 +80,15 @@ export default function Reports() {
   return (
     <Layout>
       {/* Header */}
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-8 py-6">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900">Reports & Analytics</h1>
-            <p className="text-slate-600 mt-1">View order history and sales analytics</p>
-          </div>
-        </div>
+        <PageHeader
+          title="Reports & Analytics"
+          description="View order history and sales analytics"
+        />
 
-        <div className="p-8">
+        <div className="p-4">
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200">
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm">
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -100,7 +99,7 @@ export default function Reports() {
           )}
 
           {/* Date Filter */}
-          <div className="mb-6 bg-white rounded-xl border border-gray-200 p-6">
+          <div className="mb-4 bg-white rounded-lg border border-gray-200 p-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <Label htmlFor="start_date" className="text-sm font-semibold text-slate-900 mb-2 block">
@@ -143,7 +142,7 @@ export default function Reports() {
               <div className="flex items-end">
                 <button
                   onClick={fetchOrders}
-                  className="w-full px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-xl hover:scale-105"
+                  className="w-full px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg"
                   style={{ background: 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)' }}
                 >
                   Apply Filter
@@ -153,14 +152,14 @@ export default function Reports() {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-5">
             {/* Total Revenue */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               <div 
                 className="h-2"
                 style={{ background: 'linear-gradient(90deg, #10B981 0%, #34D399 100%)' }}
               />
-              <div className="p-6">
+              <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div 
                     className="w-12 h-12 rounded-lg flex items-center justify-center"
@@ -172,17 +171,17 @@ export default function Reports() {
                   </div>
                 </div>
                 <p className="text-sm font-medium text-slate-600 mb-1">Total Revenue</p>
-                <p className="text-3xl font-bold text-slate-900">₹{stats.totalRevenue.toFixed(2)}</p>
+                <p className="text-xl font-bold text-slate-900">₹{stats.totalRevenue.toFixed(2)}</p>
               </div>
             </div>
 
             {/* Total Orders */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               <div 
                 className="h-2"
                 style={{ background: 'linear-gradient(90deg, #3B82F6 0%, #60A5FA 100%)' }}
               />
-              <div className="p-6">
+              <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div 
                     className="w-12 h-12 rounded-lg flex items-center justify-center"
@@ -194,17 +193,17 @@ export default function Reports() {
                   </div>
                 </div>
                 <p className="text-sm font-medium text-slate-600 mb-1">Total Orders</p>
-                <p className="text-3xl font-bold text-slate-900">{stats.totalOrders}</p>
+                <p className="text-xl font-bold text-slate-900">{stats.totalOrders}</p>
               </div>
             </div>
 
             {/* Total GST */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               <div 
                 className="h-2"
                 style={{ background: 'linear-gradient(90deg, #F59E0B 0%, #FBBF24 100%)' }}
               />
-              <div className="p-6">
+              <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div 
                     className="w-12 h-12 rounded-lg flex items-center justify-center"
@@ -216,17 +215,17 @@ export default function Reports() {
                   </div>
                 </div>
                 <p className="text-sm font-medium text-slate-600 mb-1">Total GST</p>
-                <p className="text-3xl font-bold text-slate-900">₹{stats.totalGST.toFixed(2)}</p>
+                <p className="text-xl font-bold text-slate-900">₹{stats.totalGST.toFixed(2)}</p>
               </div>
             </div>
 
             {/* Avg Order Value */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
               <div 
                 className="h-2"
                 style={{ background: 'linear-gradient(90deg, #8B5CF6 0%, #A78BFA 100%)' }}
               />
-              <div className="p-6">
+              <div className="p-4">
                 <div className="flex items-center justify-between mb-3">
                   <div 
                     className="w-12 h-12 rounded-lg flex items-center justify-center"
@@ -238,7 +237,7 @@ export default function Reports() {
                   </div>
                 </div>
                 <p className="text-sm font-medium text-slate-600 mb-1">Avg Order Value</p>
-                <p className="text-3xl font-bold text-slate-900">₹{stats.avgOrderValue.toFixed(2)}</p>
+                <p className="text-xl font-bold text-slate-900">₹{stats.avgOrderValue.toFixed(2)}</p>
               </div>
             </div>
           </div>
@@ -258,7 +257,7 @@ export default function Reports() {
             /* Empty State */
             <div className="flex flex-col items-center justify-center py-20">
               <div 
-                className="w-24 h-24 rounded-full flex items-center justify-center mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
                 style={{ background: 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)' }}
               >
                 <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -274,10 +273,10 @@ export default function Reports() {
               {orders.map((order) => (
                 <div
                   key={order.id}
-                  className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
                 >
                   {/* Order Header */}
-                  <div className="p-6 border-b border-gray-100">
+                  <div className="p-4 border-b border-gray-100">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-3">
@@ -321,7 +320,7 @@ export default function Reports() {
                       </div>
 
                       <div className="text-right">
-                        <p className="text-3xl font-bold text-slate-900">₹{order.grand_total.toFixed(2)}</p>
+                        <p className="text-xl font-bold text-slate-900">₹{order.grand_total.toFixed(2)}</p>
                         <p className="text-sm text-slate-600 mt-1">GST: ₹{order.total_gst.toFixed(2)}</p>
                         <span className="inline-block mt-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">
                           {order.order_source.toUpperCase()}
@@ -332,14 +331,14 @@ export default function Reports() {
 
                   {/* Order Details (Expandable) */}
                   {selectedOrder?.id === order.id ? (
-                    <div className="p-6 bg-gray-50">
+                    <div className="p-4 bg-gray-50">
                       <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
                         <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                         </svg>
                         Order Items ({order.order_items.length})
                       </h4>
-                      <div className="space-y-2 mb-6">
+                      <div className="space-y-2 mb-4">
                         {order.order_items.map((item, idx) => (
                           <div key={idx} className="flex justify-between items-center p-3 bg-white rounded-lg">
                             <div className="flex-1">

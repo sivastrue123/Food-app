@@ -16,6 +16,7 @@ import Reports from '@/pages/Reports'
 import Kiosk from '@/pages/Kiosk'
 import AuditLogs from '@/pages/AuditLogs'
 import Unauthorized from '@/pages/Unauthorized'
+// import "./styles/theme.css"
 
 function App() {
   return (

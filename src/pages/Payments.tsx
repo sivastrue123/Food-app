@@ -1,5 +1,6 @@
 import { useAuth } from '@/contexts/AuthContext'
 import { Layout } from '@/components/Layout'
+import { PageHeader } from '@/components/PageHeader'
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import type { Employee } from '@/types'
@@ -108,28 +109,24 @@ export default function Payments() {
 
   return (
     <Layout>
-      {/* Header */}
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900">Payments</h1>
-              <p className="text-slate-600 mt-1">Track and manage employee salary payments</p>
-            </div>
-            {/* Total Pending Badge */}
-            <div 
-              className="px-6 py-3 rounded-xl text-white"
+      <PageHeader
+          title="Payments"
+          description="Track and manage employee salary payments"
+          actions={
+            <div
+              className="px-4 py-2 rounded-lg text-sm text-white"
               style={{ background: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)' }}
             >
               <p className="text-sm font-medium opacity-90">Total Pending</p>
-              <p className="text-2xl font-bold">₹{totalPending.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</p>
+              <p className="text-xl font-bold">₹{totalPending.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</p>
             </div>
-          </div>
-        </div>
+          }
+        />
 
-        <div className="p-8">
+        <div className="p-4">
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200">
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm">
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -140,7 +137,7 @@ export default function Payments() {
           )}
 
           {/* Filters */}
-          <div className="mb-6 flex gap-3">
+          <div className="mb-4 flex gap-3">
             <button
               onClick={() => setFilter('all')}
               className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
@@ -188,7 +185,7 @@ export default function Payments() {
             /* Empty State */
             <div className="flex flex-col items-center justify-center py-20">
               <div 
-                className="w-24 h-24 rounded-full flex items-center justify-center mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
                 style={{ background: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)' }}
               >
                 <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,14 +197,14 @@ export default function Payments() {
             </div>
           ) : (
             /* Payment Cards */
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {filteredEmployees.map((employee) => (
                 <div
                   key={employee.id}
-                  className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
                 >
                   {/* Card Header */}
-                  <div className="p-6 border-b border-gray-100">
+                  <div className="p-4 border-b border-gray-100">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
                         {/* Avatar */}
@@ -244,9 +241,9 @@ export default function Payments() {
                   </div>
 
                   {/* Card Content */}
-                  <div className="p-6">
+                  <div className="p-4">
                     {/* Payment Info Grid */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="grid grid-cols-2 gap-3 mb-4">
                       <div className="p-3 rounded-lg bg-gray-50">
                         <p className="text-xs font-medium text-slate-600 mb-1">Monthly Salary</p>
                         <p className="text-lg font-bold text-slate-900">
@@ -265,7 +262,7 @@ export default function Payments() {
 
                     {/* Unpaid Amount */}
                     <div 
-                      className="p-4 rounded-xl mb-4"
+                      className="p-3 rounded-lg mb-3"
                       style={{
                         background: employee.unpaidAmount > 100
                           ? 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)'
@@ -275,7 +272,7 @@ export default function Payments() {
                       <div className="flex items-center justify-between text-white">
                         <div>
                           <p className="text-sm font-medium opacity-90">Unpaid Amount</p>
-                          <p className="text-3xl font-bold">
+                          <p className="text-xl font-bold">
                             ₹{employee.unpaidAmount.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                           </p>
                         </div>
@@ -289,7 +286,7 @@ export default function Payments() {
                     {employee.unpaidAmount > 100 && (
                       <button
                         onClick={() => markAsPaid(employee.id, employee.unpaidAmount)}
-                        className="w-full px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-lg hover:scale-[1.02] flex items-center justify-center gap-2"
+                        className="w-full px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg flex items-center justify-center gap-2"
                         style={{ background: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)' }}
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

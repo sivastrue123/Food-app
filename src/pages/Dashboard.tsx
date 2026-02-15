@@ -1,5 +1,6 @@
 import { useAuth } from '@/contexts/AuthContext'
 import { Layout } from '@/components/Layout'
+import { PageHeader } from '@/components/PageHeader'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
@@ -195,31 +196,28 @@ export default function Dashboard() {
   return (
     <Layout>
 
-        {/* Header */}
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
-              <p className="text-slate-600 mt-1">Welcome back, {user?.username}</p>
-            </div>
-            <div className="text-sm text-slate-500">
+        <PageHeader
+          title="Dashboard"
+          description={`Welcome back, ${user?.username}`}
+          actions={
+            <span className="text-xs text-slate-500">
               {new Date().toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-            </div>
-          </div>
-        </div>
+            </span>
+          }
+        />
 
-        <div className="p-8 space-y-8">
+        <div className="p-4 space-y-5">
           {/* Metric Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Total Revenue Card */}
             <div 
-              className="rounded-xl p-6 text-white relative overflow-hidden"
+              className="rounded-lg p-4 text-white relative overflow-hidden min-h-[100px]"
               style={{ background: 'linear-gradient(135deg, #0891B2 0%, #06B6D4 100%)' }}
             >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-2 flex-shrink-0">
+                  <div className="w-9 h-9 rounded-md bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
@@ -229,21 +227,21 @@ export default function Dashboard() {
                     </div>
                   )}
                 </div>
-                <div className="text-3xl font-bold mb-1">{formatCurrency(metrics.totalRevenue)}</div>
-                <div className="text-sm text-white/80">Total Revenue</div>
+                <div className="text-xl font-bold mb-0.5">{formatCurrency(metrics.totalRevenue)}</div>
+                <div className="text-xs text-white/80">Total Revenue</div>
               </div>
               <div className="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10" />
             </div>
 
             {/* Orders Today Card */}
             <div 
-              className="rounded-xl p-6 text-white relative overflow-hidden"
+              className="rounded-lg p-4 text-white relative overflow-hidden min-h-[100px]"
               style={{ background: 'linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%)' }}
             >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-2 flex-shrink-0">
+                  <div className="w-9 h-9 rounded-md bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                   </div>
@@ -253,63 +251,63 @@ export default function Dashboard() {
                     </div>
                   )}
                 </div>
-                <div className="text-3xl font-bold mb-1">{metrics.ordersToday}</div>
-                <div className="text-sm text-white/80">Orders Today</div>
+                <div className="text-xl font-bold mb-0.5">{metrics.ordersToday}</div>
+                <div className="text-xs text-white/80">Orders Today</div>
               </div>
               <div className="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10" />
             </div>
 
             {/* Active Outlets Card */}
             <div 
-              className="rounded-xl p-6 text-white relative overflow-hidden"
+              className="rounded-lg p-4 text-white relative overflow-hidden min-h-[100px]"
               style={{ background: 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)' }}
             >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-2 flex-shrink-0">
+                  <div className="w-9 h-9 rounded-md bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                   </div>
                   <div className="text-sm font-semibold text-green-100">All operational</div>
                 </div>
-                <div className="text-3xl font-bold mb-1">{metrics.activeOutlets}</div>
-                <div className="text-sm text-white/80">Active Outlets</div>
+                <div className="text-xl font-bold mb-0.5">{metrics.activeOutlets}</div>
+                <div className="text-xs text-white/80">Active Outlets</div>
               </div>
               <div className="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10" />
             </div>
 
             {/* Total Employees Card */}
             <div 
-              className="rounded-xl p-6 text-white relative overflow-hidden"
+              className="rounded-lg p-4 text-white relative overflow-hidden min-h-[100px]"
               style={{ background: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)' }}
             >
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-center justify-between mb-2 flex-shrink-0">
+                  <div className="w-9 h-9 rounded-md bg-white/20 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                   </div>
                   <div className="text-sm font-semibold text-green-100">Active staff</div>
                 </div>
-                <div className="text-3xl font-bold mb-1">{metrics.totalEmployees}</div>
-                <div className="text-sm text-white/80">Total Employees</div>
+                <div className="text-xl font-bold mb-0.5">{metrics.totalEmployees}</div>
+                <div className="text-xs text-white/80">Total Employees</div>
               </div>
               <div className="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-white/10" />
             </div>
           </div>
 
           {/* Charts and Data Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Top Products */}
             <Card className="border-gray-200 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-slate-900">Top 5 Products</CardTitle>
+                <CardTitle className="text-base font-semibold text-slate-900">Top 5 Products</CardTitle>
               </CardHeader>
               <CardContent>
                 {topProducts.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={250}>
+                  <ResponsiveContainer width="100%" height={200}>
                     <BarChart data={topProducts}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                       <XAxis dataKey="product_name" tick={{ fontSize: 12 }} />
@@ -319,7 +317,7 @@ export default function Dashboard() {
                     </BarChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className="h-64 flex items-center justify-center text-slate-400">
+                  <div className="h-40 flex items-center justify-center text-slate-400 text-sm">
                     No product data available
                   </div>
                 )}
@@ -329,13 +327,13 @@ export default function Dashboard() {
             {/* Recent Orders */}
             <Card className="border-gray-200 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-slate-900">Recent Orders</CardTitle>
+                <CardTitle className="text-base font-semibold text-slate-900">Recent Orders</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   {recentOrders.length > 0 ? (
                     recentOrders.map((order) => (
-                      <div key={order.id} className="flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <div key={order.id} className="flex items-center justify-between p-2 rounded-md bg-gray-50 hover:bg-gray-100 transition-colors">
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-slate-900 truncate">{order.customer_name}</p>
                           <p className="text-xs text-slate-500">{formatDate(order.order_date)}</p>
@@ -351,7 +349,7 @@ export default function Dashboard() {
                       </div>
                     ))
                   ) : (
-                    <div className="h-64 flex items-center justify-center text-slate-400">
+                    <div className="h-40 flex items-center justify-center text-slate-400 text-sm">
                       No recent orders
                     </div>
                   )}
@@ -362,11 +360,11 @@ export default function Dashboard() {
             {/* Sales Trend */}
             <Card className="border-gray-200 shadow-sm">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold text-slate-900">7-Day Sales Trend</CardTitle>
+                <CardTitle className="text-base font-semibold text-slate-900">7-Day Sales Trend</CardTitle>
               </CardHeader>
               <CardContent>
                 {salesTrend.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={250}>
+                  <ResponsiveContainer width="100%" height={200}>
                     <LineChart data={salesTrend}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E2E8F0" />
                       <XAxis 
@@ -383,7 +381,7 @@ export default function Dashboard() {
                     </LineChart>
                   </ResponsiveContainer>
                 ) : (
-                  <div className="h-64 flex items-center justify-center text-slate-400">
+                  <div className="h-40 flex items-center justify-center text-slate-400 text-sm">
                     No sales trend data
                   </div>
                 )}
@@ -394,56 +392,56 @@ export default function Dashboard() {
           {/* Quick Actions */}
           <Card className="border-gray-200 shadow-sm">
             <CardHeader>
-              <CardTitle className="text-lg font-semibold text-slate-900">Quick Actions</CardTitle>
+              <CardTitle className="text-base font-semibold text-slate-900">Quick Actions</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <button 
                   onClick={() => window.location.href = '/orders'}
-                  className="p-4 rounded-lg border-2 border-cyan-200 bg-cyan-50 hover:bg-cyan-100 transition-colors text-center group"
+                  className="p-3 sm:p-4 rounded-lg border-2 border-cyan-200 bg-cyan-50 hover:bg-cyan-100 transition-colors text-center group"
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-cyan-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-9 h-9 mx-auto mb-2 rounded-md bg-cyan-600 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                   </div>
-                  <p className="text-sm font-semibold text-slate-900">New Order</p>
+                  <p className="text-xs font-semibold text-slate-900">New Order</p>
                 </button>
 
                 <button 
                   onClick={() => window.location.href = '/products'}
-                  className="p-4 rounded-lg border-2 border-purple-200 bg-purple-50 hover:bg-purple-100 transition-colors text-center group"
+                  className="p-3 sm:p-4 rounded-lg border-2 border-purple-200 bg-purple-50 hover:bg-purple-100 transition-colors text-center group"
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-9 h-9 mx-auto mb-2 rounded-md bg-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
                   </div>
-                  <p className="text-sm font-semibold text-slate-900">Add Product</p>
+                  <p className="text-xs font-semibold text-slate-900">Add Product</p>
                 </button>
 
                 <button 
                   onClick={() => window.location.href = '/inventory'}
-                  className="p-4 rounded-lg border-2 border-amber-200 bg-amber-50 hover:bg-amber-100 transition-colors text-center group"
+                  className="p-3 sm:p-4 rounded-lg border-2 border-amber-200 bg-amber-50 hover:bg-amber-100 transition-colors text-center group"
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-9 h-9 mx-auto mb-2 rounded-md bg-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                     </svg>
                   </div>
-                  <p className="text-sm font-semibold text-slate-900">Manage Inventory</p>
+                  <p className="text-xs font-semibold text-slate-900">Manage Inventory</p>
                 </button>
 
                 <button 
                   onClick={() => window.location.href = '/reports'}
-                  className="p-4 rounded-lg border-2 border-green-200 bg-green-50 hover:bg-green-100 transition-colors text-center group"
+                  className="p-3 sm:p-4 rounded-lg border-2 border-green-200 bg-green-50 hover:bg-green-100 transition-colors text-center group"
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-green-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-9 h-9 mx-auto mb-2 rounded-md bg-green-600 flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                   </div>
-                  <p className="text-sm font-semibold text-slate-900">View Reports</p>
+                  <p className="text-xs font-semibold text-slate-900">View Reports</p>
                 </button>
               </div>
             </CardContent>

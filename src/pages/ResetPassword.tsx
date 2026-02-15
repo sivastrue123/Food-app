@@ -68,17 +68,17 @@ export default function ResetPassword() {
       {/* Left Panel - Info */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-purple-600 to-purple-800 p-12 flex-col justify-center text-white">
         <div className="max-w-md">
-          <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+          <div className="bg-white/20 rounded-full w-14 h-14 flex items-center justify-center mb-4">
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
           <h1 className="text-4xl font-bold mb-4">Secure Your Account</h1>
-          <p className="text-xl text-purple-100 mb-8">
+          <p className="text-base text-purple-100 mb-6">
             Create a strong password to protect your account and data.
           </p>
           
-          <div className="bg-white/10 rounded-lg p-6 space-y-3">
+          <div className="bg-white/10 rounded-lg p-4 space-y-3">
             <h3 className="font-semibold text-lg mb-3">Password Requirements:</h3>
             <div className="flex items-start gap-3">
               <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -109,10 +109,10 @@ export default function ResetPassword() {
       </div>
 
       {/* Right Panel - Form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-gray-50">
+      <div className="flex-1 flex items-center justify-center p-6 bg-gray-50">
         <div className="w-full max-w-md">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Reset Password</h2>
+          <div className="mb-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-1">Reset Password</h2>
             <p className="text-gray-600">You're using a temporary password. Please create a new one.</p>
           </div>
 

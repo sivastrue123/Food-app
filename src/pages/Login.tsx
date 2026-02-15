@@ -61,7 +61,7 @@ export default function Login() {
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-center items-center w-full px-12 text-white">
           {/* Logo */}
-          <div className="mb-8 text-center">
+          <div className="mb-6 text-center">
             <h1 className="text-7xl font-bold mb-3 tracking-tight text-white">ZenHotels</h1>
             <p className="text-2xl font-light text-white opacity-90">
               Serenity in Management
@@ -71,7 +71,7 @@ export default function Login() {
           {/* Zen-inspired illustration */}
           <div className="mt-16 text-center max-w-md">
             <div 
-              className="w-40 h-40 mx-auto mb-8 rounded-full flex items-center justify-center backdrop-blur-sm"
+              className="w-32 h-32 mx-auto mb-6 rounded-full flex items-center justify-center backdrop-blur-sm"
               style={{
                 background: 'rgba(255, 255, 255, 0.1)',
                 border: '2px solid rgba(255, 255, 255, 0.2)'
@@ -99,7 +99,7 @@ export default function Login() {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-8 py-12 bg-white">
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-8 bg-white">
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden mb-10 text-center">
@@ -123,7 +123,7 @@ export default function Login() {
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 rounded-lg border bg-red-50 border-red-200">
+            <div className="mb-4 p-3 rounded-lg border bg-red-50 border-red-200 text-sm">
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -223,7 +223,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-14 text-white font-semibold text-base rounded-xl transition-all duration-300 hover:shadow-xl hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full h-11 text-white font-semibold text-sm rounded-lg transition-all duration-200 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
               style={{
                 background: isLoading 
                   ? '#94A3B8' 

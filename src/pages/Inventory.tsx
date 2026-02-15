@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Layout } from '@/components/Layout'
+// import { PageHeader } from '@/components/PageHeader'
 import { InventoryFormModal } from '@/components/InventoryFormModal'
 import { supabase } from '@/lib/supabase'
 import type { Product, Outlet, OutletInventory } from '@/types'
@@ -119,15 +120,15 @@ export default function Inventory() {
   return (
     <Layout>
       {/* Header */}
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-8 py-6">
+        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Inventory</h1>
-              <p className="text-slate-600 mt-1">Track stock levels and expiry dates</p>
+              <h1 className="text-xl font-bold text-slate-900">Inventory</h1>
+              <p className="text-slate-600 text-sm mt-0.5">Track stock levels and expiry dates</p>
             </div>
             <button
               onClick={() => setShowModal(true)}
-              className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-2"
+              className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg flex items-center gap-1.5"
               style={{ background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)' }}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -138,10 +139,10 @@ export default function Inventory() {
           </div>
         </div>
 
-        <div className="p-8">
+        <div className="p-4">
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200">
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm">
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -152,7 +153,7 @@ export default function Inventory() {
           )}
 
           {/* Outlet Selector */}
-          <div className="mb-6 bg-white rounded-xl border border-gray-200 p-6">
+          <div className="mb-4 bg-white rounded-lg border border-gray-200 p-4">
             <label className="text-sm font-semibold text-slate-900 mb-2 block">Select Outlet</label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -176,9 +177,9 @@ export default function Inventory() {
 
           {/* Loading State */}
           {loading ? (
-            <div className="flex items-center justify-center py-20">
-              <div className="flex flex-col items-center gap-4">
-                <svg className="animate-spin h-12 w-12 text-pink-600" fill="none" viewBox="0 0 24 24">
+            <div className="flex items-center justify-center py-12">
+              <div className="flex flex-col items-center gap-3">
+                <svg className="animate-spin h-9 w-9 text-pink-600" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                 </svg>
@@ -187,20 +188,20 @@ export default function Inventory() {
             </div>
           ) : inventory.length === 0 ? (
             /* Empty State */
-            <div className="flex flex-col items-center justify-center py-20">
+            <div className="flex flex-col items-center justify-center py-12">
               <div 
-                className="w-24 h-24 rounded-full flex items-center justify-center mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
                 style={{ background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)' }}
               >
-                <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">No inventory items</h3>
-              <p className="text-slate-600 mb-6">Add products to this outlet's inventory</p>
+              <h3 className="text-lg font-bold text-slate-900 mb-1">No inventory items</h3>
+              <p className="text-slate-600 text-sm mb-4">Add products to this outlet's inventory</p>
               <button
                 onClick={() => setShowModal(true)}
-                className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg"
                 style={{ background: 'linear-gradient(135deg, #EC4899 0%, #F472B6 100%)' }}
               >
                 Add Your First Item
@@ -208,7 +209,7 @@ export default function Inventory() {
             </div>
           ) : (
             /* Inventory Grid */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {inventory.map((item) => {
                 const daysUntilExpiry = getDaysUntilExpiry(item.expiry_date)
 
@@ -218,12 +219,12 @@ export default function Inventory() {
                 return (
                   <div
                     key={item.id}
-                    className={`bg-white rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden ${
+                    className={`bg-white rounded-lg border shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden ${
                       isExpired ? 'border-red-300' : isExpiringSoon ? 'border-orange-300' : 'border-gray-200'
                     }`}
                   >
                     {/* Card Header */}
-                    <div className={`p-6 border-b ${
+                    <div className={`p-4 border-b ${
                       isExpired ? 'bg-red-50 border-red-100' : isExpiringSoon ? 'bg-orange-50 border-orange-100' : 'border-gray-100'
                     }`}>
                       <div className="flex items-start justify-between mb-3">
@@ -258,10 +259,10 @@ export default function Inventory() {
                     </div>
 
                     {/* Card Content */}
-                    <div className="p-6">
+                    <div className="p-4">
                       {/* Stock Quantity Display */}
                       <div 
-                        className="p-4 rounded-xl mb-4"
+                        className="p-3 rounded-lg mb-3"
                         style={{
                           background: item.stock_quantity === 0
                             ? 'linear-gradient(135deg, #EF4444 0%, #F87171 100%)'

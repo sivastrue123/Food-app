@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Layout } from '@/components/Layout'
+import { PageHeader } from '@/components/PageHeader'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { supabase } from '@/lib/supabase'
@@ -283,18 +284,12 @@ export default function Orders() {
 
   return (
     <Layout>
-      {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-8 py-6">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-900">Point of Sale</h1>
-            <p className="text-slate-600 mt-1">Create orders and generate invoices</p>
-          </div>
-        </div>
+      <PageHeader title="Point of Sale" description="Create orders and generate invoices" />
 
-        <div className="p-8">
+        <div className="p-4">
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200">
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm">
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -304,11 +299,11 @@ export default function Orders() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {/* Products Section */}
             <div className="lg:col-span-2">
               {/* Search */}
-              <div className="mb-6 bg-white rounded-xl border border-gray-200 p-6">
+              <div className="mb-4 bg-white rounded-lg border border-gray-200 p-4">
                 <label className="text-sm font-semibold text-slate-900 mb-2 block">Search Products</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -342,10 +337,10 @@ export default function Orders() {
                     <div
                       key={item.id}
                       onClick={() => addToCart(item)}
-                      className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden group"
+                      className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden group"
                     >
-                      <div className="p-6">
-                        <div className="flex items-start justify-between mb-3">
+                      <div className="p-4">
+                        <div className="flex items-start justify-between mb-2">
                           <div 
                             className="w-12 h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform"
                             style={{ background: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)' }}
@@ -388,10 +383,10 @@ export default function Orders() {
 
             {/* Cart Section */}
             <div>
-              <div className="bg-white rounded-xl border border-gray-200 shadow-sm sticky top-8">
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm sticky top-4">
                 {/* Cart Header */}
                 <div 
-                  className="px-6 py-4 text-white relative overflow-hidden"
+                  className="px-4 py-3 text-white relative overflow-hidden"
                   style={{ background: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)' }}
                 >
                   <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-white/10" />
@@ -401,9 +396,9 @@ export default function Orders() {
                   </div>
                 </div>
 
-                <div className="p-6">
+                <div className="p-4">
                   {/* Customer Info */}
-                  <div className="space-y-4 mb-6">
+                  <div className="space-y-3 mb-4">
                     <div>
                       <Label htmlFor="customer_mobile" className="text-sm font-semibold text-slate-900 mb-2 block">
                         Customer Mobile
@@ -507,7 +502,7 @@ export default function Orders() {
                   <button
                     onClick={processOrder}
                     disabled={cart.length === 0 || processingOrder}
-                    className="w-full px-6 py-4 rounded-xl font-bold text-white transition-all duration-300 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full px-4 py-3 rounded-lg text-sm font-bold text-white transition-all duration-200 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     style={{ background: 'linear-gradient(135deg, #10B981 0%, #34D399 100%)' }}
                   >
                     {processingOrder ? (

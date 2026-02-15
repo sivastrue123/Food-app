@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { Layout } from '@/components/Layout'
+import { PageHeader } from '@/components/PageHeader'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -113,7 +114,7 @@ export default function Users() {
       <div className="flex h-screen items-center justify-center bg-gray-50">
         <div className="text-center">
           <div 
-            className="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6"
+            className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
             style={{ background: 'linear-gradient(135deg, #EF4444 0%, #F87171 100%)' }}
           >
             <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,29 +131,27 @@ export default function Users() {
   return (
     <Layout>
       {/* Header */}
-        <div className="sticky top-0 z-10 bg-white border-b border-gray-200 px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900">Users</h1>
-              <p className="text-slate-600 mt-1">Manage system users and permissions</p>
-            </div>
+        <PageHeader
+          title="Users"
+          description="Manage system users and permissions"
+          actions={
             <button
               onClick={() => setShowModal(true)}
-              className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-xl hover:scale-105 flex items-center gap-2"
+              className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg flex items-center gap-1.5"
               style={{ background: 'linear-gradient(135deg, #6366F1 0%, #818CF8 100%)' }}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
               Add New User
             </button>
-          </div>
-        </div>
+          }
+        />
 
-        <div className="p-8">
+        <div className="p-4">
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 rounded-lg bg-red-50 border border-red-200">
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-sm">
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 flex-shrink-0 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
@@ -164,7 +163,7 @@ export default function Users() {
 
           {/* Temp Password Display */}
           {tempPassword && (
-            <div className="mb-6 p-6 rounded-xl bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200">
+            <div className="mb-4 p-4 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200">
               <div className="flex items-start gap-4">
                 <div 
                   className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
@@ -223,7 +222,7 @@ export default function Users() {
             /* Empty State */
             <div className="flex flex-col items-center justify-center py-20">
               <div 
-                className="w-24 h-24 rounded-full flex items-center justify-center mb-6"
+                className="w-16 h-16 rounded-full flex items-center justify-center mb-4"
                 style={{ background: 'linear-gradient(135deg, #6366F1 0%, #818CF8 100%)' }}
               >
                 <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -231,10 +230,10 @@ export default function Users() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-2">No users yet</h3>
-              <p className="text-slate-600 mb-6">Get started by adding your first user</p>
+              <p className="text-slate-600 text-sm mb-4">Get started by adding your first user</p>
               <button
                 onClick={() => setShowModal(true)}
-                className="px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-xl hover:scale-105"
+                className="px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg"
                 style={{ background: 'linear-gradient(135deg, #6366F1 0%, #818CF8 100%)' }}
               >
                 Add Your First User
@@ -242,11 +241,11 @@ export default function Users() {
             </div>
           ) : (
             /* Users Grid */
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {users.map((u) => (
                 <div
                   key={u.id}
-                  className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                  className="bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden"
                 >
                   {/* Card Header with Gradient */}
                   <div 
@@ -363,7 +362,7 @@ export default function Users() {
           >
             {/* Modal Header */}
             <div 
-              className="px-8 py-6 text-white relative overflow-hidden"
+              className="px-6 py-4 text-white relative overflow-hidden"
               style={{ background: 'linear-gradient(135deg, #6366F1 0%, #818CF8 100%)' }}
             >
               <div className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/10" />
@@ -386,7 +385,7 @@ export default function Users() {
             </div>
 
             {/* Modal Content */}
-            <form onSubmit={handleSubmit} className="px-8 py-6 space-y-6">
+            <form onSubmit={handleSubmit} className="px-6 py-4 space-y-4">
               <div className="space-y-4">
                 {/* Username */}
                 <div>
@@ -464,13 +463,13 @@ export default function Users() {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="flex-1 px-6 py-3 rounded-xl font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors"
+                  className="flex-1 px-4 py-2 rounded-lg text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300 hover:shadow-lg"
+                  className="flex-1 px-4 py-2 rounded-lg text-sm font-semibold text-white transition-all duration-200 hover:shadow-lg"
                   style={{ background: 'linear-gradient(135deg, #6366F1 0%, #818CF8 100%)' }}
                 >
                   Create User

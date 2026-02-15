@@ -209,17 +209,17 @@ export default function Kiosk() {
   // Order complete screen
   if (orderComplete) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-8">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center p-4">
         <Card className="max-w-2xl w-full">
-          <CardContent className="p-12 text-center">
-            <div className="mb-6">
-              <svg className="w-24 h-24 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <CardContent className="p-6 text-center">
+            <div className="mb-4">
+              <svg className="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h1 className="text-4xl font-bold text-slate-900 mb-4">Order Placed Successfully!</h1>
-            <p className="text-xl text-slate-600 mb-6">Your order number is:</p>
-            <p className="text-5xl font-bold text-blue-600 mb-8">{orderNumber}</p>
+            <h1 className="text-2xl font-bold text-slate-900 mb-3">Order Placed Successfully!</h1>
+            <p className="text-base text-slate-600 mb-3">Your order number is:</p>
+            <p className="text-3xl font-bold text-blue-600 mb-5">{orderNumber}</p>
             <p className="text-lg text-slate-600 mb-4">Total Amount: ₹{total.toFixed(2)}</p>
             <p className="text-slate-500">Please proceed to the counter for payment</p>
             <p className="text-sm text-slate-400 mt-8">Returning to menu in a moment...</p>
@@ -232,27 +232,28 @@ export default function Kiosk() {
   // Checkout screen
   if (showCheckout) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 p-8">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50 p-4">
         <div className="max-w-4xl mx-auto">
           <Button
             variant="outline"
+            size="sm"
             onClick={() => setShowCheckout(false)}
-            className="mb-6"
+            className="mb-4"
           >
             ← Back to Menu
           </Button>
 
           <Card>
-            <CardContent className="p-8">
-              <h2 className="text-3xl font-bold mb-6">Review Your Order</h2>
+            <CardContent className="p-5">
+              <h2 className="text-xl font-bold mb-4">Review Your Order</h2>
 
               {error && (
-                <div className="mb-6 rounded-lg bg-red-50 border border-red-200 p-4 text-sm text-red-800">
+                <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-800">
                   {error}
                 </div>
               )}
 
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-5">
                 {cart.map((item) => (
                   <div key={item.inventory_id} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                     <div className="flex-1">
@@ -285,7 +286,7 @@ export default function Kiosk() {
                 ))}
               </div>
 
-              <div className="border-t pt-6 mb-6">
+              <div className="border-t pt-4 mb-4">
                 <div className="flex justify-between text-lg mb-2">
                   <span>Subtotal:</span>
                   <span>₹{subtotal.toFixed(2)}</span>
@@ -300,21 +301,21 @@ export default function Kiosk() {
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className="block text-sm font-medium mb-2">Mobile Number (Optional)</label>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">Mobile Number (Optional)</label>
                 <Input
                   type="tel"
                   placeholder="Enter your mobile number"
                   value={customerMobile}
                   onChange={(e) => setCustomerMobile(e.target.value)}
-                  className="text-lg p-6"
+                  className="text-base p-3"
                 />
               </div>
 
               <Button
                 onClick={placeOrder}
                 disabled={processingOrder}
-                className="w-full text-xl py-8 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
+                className="w-full text-base py-5 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
               >
                 {processingOrder ? 'Placing Order...' : 'Place Order'}
               </Button>
@@ -329,18 +330,18 @@ export default function Kiosk() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-slate-200/60 p-6 sticky top-0 z-10">
+      <header className="bg-white/80 backdrop-blur-sm border-b border-slate-200/60 p-4 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
               Self-Order Kiosk
             </h1>
-            <p className="text-slate-600 text-lg mt-1">Select items to order</p>
+            <p className="text-slate-600 text-sm mt-0.5">Select items to order</p>
           </div>
           {cart.length > 0 && (
             <Button
               onClick={() => setShowCheckout(true)}
-              className="text-xl py-6 px-8 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
+              className="text-base py-3 px-5 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700"
             >
               View Cart ({cart.length}) - ₹{total.toFixed(2)}
             </Button>
@@ -348,19 +349,19 @@ export default function Kiosk() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto p-6">
+      <div className="max-w-7xl mx-auto p-4">
         {error && (
-          <div className="mb-6 rounded-lg bg-red-50 border border-red-200 p-4 text-lg text-red-800">
+          <div className="mb-4 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-800">
             {error}
           </div>
         )}
 
         {/* Category Filter */}
-        <div className="mb-8 flex gap-3 overflow-x-auto pb-2">
+        <div className="mb-5 flex gap-2 overflow-x-auto pb-2">
           <Button
             variant={selectedCategory === 'all' ? 'default' : 'outline'}
             onClick={() => setSelectedCategory('all')}
-            className="text-lg py-6 px-8"
+            className="text-sm py-3 px-4"
           >
             All Items
           </Button>
@@ -369,7 +370,7 @@ export default function Kiosk() {
               key={category}
               variant={selectedCategory === category ? 'default' : 'outline'}
               onClick={() => setSelectedCategory(category)}
-              className="text-lg py-6 px-8 whitespace-nowrap"
+              className="text-sm py-3 px-4 whitespace-nowrap"
             >
               {category}
             </Button>
@@ -385,7 +386,7 @@ export default function Kiosk() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredInventory.map((item) => {
               const cartItem = cart.find(c => c.inventory_id === item.id)
               const finalPrice = item.product.base_price * (1 + item.product.gst_percentage / 100)
@@ -396,14 +397,14 @@ export default function Kiosk() {
                   className="hover:shadow-2xl transition-all cursor-pointer transform hover:scale-105"
                   onClick={() => addToCart(item)}
                 >
-                  <CardContent className="p-6">
+                  <CardContent className="p-4">
                     <div className="mb-4">
                       <h3 className="text-2xl font-bold mb-2">{item.product.name}</h3>
                       <p className="text-slate-600 text-sm">{item.product.category}</p>
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-3xl font-bold text-blue-600">₹{finalPrice.toFixed(2)}</p>
+                        <p className="text-xl font-bold text-blue-600">₹{finalPrice.toFixed(2)}</p>
                         <p className="text-xs text-slate-500">Inc. GST</p>
                       </div>
                       {cartItem ? (
